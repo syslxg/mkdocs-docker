@@ -7,4 +7,4 @@ COPY scripts/mkdocs.sh /usr/local/bin
 
 RUN chmod +x /usr/local/bin/mkdocs.sh
 
-ENTRYPOINT [ "/usr/local/bin/mkdocs.sh" ]
+ENTRYPOINT ["/usr/local/bin/mkdocs.sh"]
