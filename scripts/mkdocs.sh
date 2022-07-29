@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-if [ "$1" = build ]; then
+if [ "$1" = produce ]; then
     if ! [ -r /mkdocs_project/mkdocs.yml ] ; then
         echo "No mkdocs.yml found in /mkdocs_project. Please mount a MkDocs project in that diretory." > /dev/stderr
         exit 1

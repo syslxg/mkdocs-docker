@@ -9,7 +9,7 @@ pipeline {
         stage('test') {
             steps {
                 echo 'The image can build a mkdocs project into a tarball'
-                sh 'docker run --name mkdocs-build --rm -i -v $PWD/test-project:/mkdocs_project  gary/mkdocs build > site.tar.gz' 
+                sh 'docker run --name mkdocs-produce --rm -v $PWD/test-project:/mkdocs_project  gary/mkdocs produce > site.tar.gz' 
                 echo 'There is a index.html at the root of the tarball'
                 sh 'tar -tf site.tar.gz |grep "^./index.html$"'
                 echo 'The image can serve the tarball as a website'
