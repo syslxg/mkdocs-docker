@@ -9,23 +9,15 @@ docker build -t gary/mkdocs .
 Note: Don't use `-t` or `--tty` flag on `docker run`. It will mix the STDOUT and STDERR.
 
 ``` 
-docker run --rm -v "$PWD/test-project:/mkdocs_project"  gary/mkdocs produce > site.tar.gz
+docker run --name mkdocs-produce --rm -v "$PWD/test-project:/mkdocs_project"  gary/mkdocs produce > site.tar.gz
 ```
 
 ## To Serve the website
 
-#### The blocking way
+Note: Don't use `-t` or `--tty` flag on `docker run`. Otherwise, tar will have issue reading from STDIN.
 
 ```
-docker run --rm -p 8000:8000 -it -v "$PWD/site.tar.gz:/mkdocs_tarball/site.tar.gz" gary/mkdocs serve
-```
-Press Ctrl-C to kill it.
-
-
-#### The non-blocking way:
-
-```
-docker run --name mkdoc-serve --rm -p 8000:8000 -v "$PWD/site.tar.gz:/mkdocs_tarball/site.tar.gz" gary/mkdocs serve &
+docker run --name mkdocs-serve --rm -i -p 8000:8000 gary/mkdocs serve < site.tar.gz &
 ```
 
 run `docker kill mkdoc-serve` to kill it.

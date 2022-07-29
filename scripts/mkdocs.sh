@@ -12,15 +12,11 @@ if [ "$1" = produce ]; then
     tar -cz .
 
 elif [ "$1" = serve ]; then
-    if ! [ -r /mkdocs_tarball/*.tar.gz ] ; then
-        echo "No tarball found in /mkdocs_tarball. Please mount a tarball in that directory." > /dev/stderr
-        exit 2
-    fi
-    echo "serving site on http://localhost:8000 "  > /dev/stderr
-    cd /mkdocs_tarball
-    mkdir -p docs
-    tar xf *.tar.gz -C docs
-    echo "site_name: My Docs" > mkdocs.yml
+    rm -rf /mkdocs_web || true
+    mkdir -p /mkdocs_web/docs
+    tar -xz -C /mkdocs_web/docs
+    cd /mkdocs_web
+    echo "site_name: Gary's Take-home" > mkdocs.yml
     mkdocs serve -a 0.0.0.0:8000
 
 else

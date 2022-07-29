@@ -14,9 +14,9 @@ pipeline {
                 sh 'tar -tf site.tar.gz |grep "^./index.html$"'
                 echo 'The image can serve the tarball as a website'
                 sh '''
-                    docker run --name mkdocs-serve --rm -p 8000:8000 -v $PWD/site.tar.gz:/mkdocs_tarball/site.tar.gz gary/mkdocs serve &
+                    docker run --name mkdocs-serve --rm -i -p 8000:8000 gary/mkdocs serve < site.tar.gz &
                     sleep 3
-                    curl http://localhost:8000
+                    curl --fail http://localhost:8000
                 '''    
             }
         }
