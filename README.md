@@ -14,7 +14,7 @@ docker run --rm -v "$PWD/test-project:/mkdocs_project"  gary/mkdocs produce > si
 
 ## To Serve the website
 
-The blocking way:
+#### The blocking way
 
 ```
 docker run --rm -p 8000:8000 -it -v "$PWD/site.tar.gz:/mkdocs_tarball/site.tar.gz" gary/mkdocs serve
@@ -22,7 +22,7 @@ docker run --rm -p 8000:8000 -it -v "$PWD/site.tar.gz:/mkdocs_tarball/site.tar.g
 Press Ctrl-C to kill it.
 
 
-The non-blocking way:
+#### The non-blocking way:
 
 ```
 docker run --name mkdoc-serve --rm -p 8000:8000 -v "$PWD/site.tar.gz:/mkdocs_tarball/site.tar.gz" gary/mkdocs serve &
